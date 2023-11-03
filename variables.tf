@@ -42,5 +42,5 @@ variable "atlas_region" {
 # IP Address Access
 variable "ip_address" {
   type = string
-  description = "IP address used to access Atlas cluster"
+  description = "Cdir block to access cluster"
 }
