@@ -6,7 +6,7 @@ resource "mongodbatlas_project" "atlas-project" {
 
 # Create a Database User
 resource "mongodbatlas_database_user" "db-user" {
-  username = "techchallenge"
+  username = var.database_username
   password = random_password.db-user-password.result
   project_id = mongodbatlas_project.atlas-project.id
   auth_database_name = "admin"
@@ -46,6 +46,49 @@ resource "mongodbatlas_advanced_cluster" "atlas-cluster" {
       region_name           = var.atlas_region
     }
   }
+  tags {
+    key   = "environment"
+    value = var.environment
+  }
+  tags {
+    key   = "application"
+    value = var.application_tag_name
+  }
+}
+
+# Stores variables into AWS ssm
+resource "aws_ssm_parameter" "mongodb_database_url" {
+  name        = "/${var.environment}/${var.application_tag_name}/MONGODB_URI"
+  description = "Auth Mongo DB Password"
+  type        = "SecureString"
+  value       = "mongodb+srv://${var.database_username}:${mongodbatlas_database_user.db-user.password }@${replace(mongodbatlas_advanced_cluster.atlas-cluster.connection_strings.0.standard_srv, "mongodb+srv://", "")}"
+
+  tags = {
+    environment = var.environment
+    application = var.application_tag_name
+  }
+
+  depends_on = [ 
+    random_password.db-user-password,
+    mongodbatlas_advanced_cluster.atlas-cluster
+  ]
+}
+
+# mongodb+srv://dev-cluster.fxrkx7k.mongodb.net
+
+# Stores variables into AWS ssm
+resource "aws_ssm_parameter" "mongodb_username" {
+  name        = "/${var.environment}/${var.application_tag_name}/MONGODB_DATABASE"
+  description = "Database name"
+  type        = "String"
+  value       = var.database_name
+
+  tags = {
+    environment = var.environment
+    application = var.application_tag_name
+  }
+
+  depends_on = [ random_password.db-user-password ]
 }
 
 # Outputs to Display
