@@ -21,13 +21,10 @@ Crie um arquivo chamado terraform.tfvars definindo os valores das variáveis que
 ```terraform
 atlas_org_id = <org id>
 atlas_project_name = "project name"
-database_name = "database name"
-environment = "environment name"
-appliaction_tag_name = "application name"
-cluster_instance_size_name = "M0"
-cloud_provider = "AWS"
 atlas_region = "US_EAST_1"
-ip_address = <bloco ip cdir liberados para acessar o cluster>
+environment = "environment name"
+database_name = "database name"
+appliaction_tag_name = "application name"
 ```
 
 Após isso rode os comandos para iniciar o terraform e subir o ambiente
