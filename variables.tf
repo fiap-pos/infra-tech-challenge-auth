@@ -19,6 +19,7 @@ variable "application_tag_name" {
 variable "database_name" {
   type        = string
   description = "Database name"
+  default     = "tech_challenge_auth"
 }
 
 variable "database_username" {
@@ -34,28 +35,11 @@ variable "environment" {
   default = "dev"
 }
 
-# Cluster Instance Size Name 
-variable "cluster_instance_size_name" {
-  type        = string
-  description = "Cluster instance size name"
-}
-
-# Cloud Provider to Host Atlas Cluster
-variable "cloud_provider" {
-  type        = string
-  description = "AWS or GCP or Azure"
-}
-
 # Atlas Region
 variable "atlas_region" {
   type        = string
   description = "Atlas region where resources will be created"
-}
-
-# IP Address Access
-variable "ip_address" {
-  type = string
-  description = "Cdir block to access cluster"
+  default     = "US_EAST_1"
 }
 
 variable "aws_region" {
