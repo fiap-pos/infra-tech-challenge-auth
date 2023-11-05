@@ -69,11 +69,6 @@ resource "aws_ssm_parameter" "mongodb_database_url" {
   type        = "SecureString"
   value       = "mongodb+srv://${var.database_username}:${mongodbatlas_database_user.db-user.password }@${replace(mongodbatlas_advanced_cluster.atlas-cluster.connection_strings.0.standard_srv, "mongodb+srv://", "")}"
 
-  tags = {
-    environment = var.environment
-    application = var.application_tag_name
-  }
-
   depends_on = [ 
     random_password.db-user-password,
     mongodbatlas_advanced_cluster.atlas-cluster
@@ -86,12 +81,6 @@ resource "aws_ssm_parameter" "mongodb_username" {
   description = "Database name"
   type        = "String"
   value       = var.database_name
-
-  tags = {
-    environment = var.environment
-    application = var.application_tag_name
-  }
-
   depends_on = [ random_password.db-user-password ]
 }
 
