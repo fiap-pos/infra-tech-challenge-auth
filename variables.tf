@@ -16,6 +16,12 @@ variable "application_tag_name" {
 }
 
 # Database name
+variable "bucket_name" {
+  type        = string
+  description = "S3 Bucket name to hold tfstate file"
+}
+
+# Database name
 variable "database_name" {
   type        = string
   description = "Database name"
