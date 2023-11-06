@@ -4,6 +4,7 @@ locals {
   ip_address = "0.0.0.0/0"
 }
 
+#Configure backend
 terraform {
   backend "s3" {
     bucket = "tech-challenge-61"
@@ -11,6 +12,7 @@ terraform {
     region = var.aws_region
   }
 }
+
 
 # Create a Project
 resource "mongodbatlas_project" "atlas-project" {
