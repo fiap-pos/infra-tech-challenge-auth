@@ -6,13 +6,22 @@ variable "atlas_org_id" {
 # Atlas Project Name
 variable "atlas_project_name" {
   type        = string
-  description = "Atlas Project Name"
+  description = "Atlas project name"
+  default     = "Fiap Tech Challenge"
 }
 
 # Application Tag name
 variable "application_tag_name" {
   type        = string
-  description = "Value to put in application tag"
+  description = "Application tag name"
+  default     = "tech-challenge-auth"
+}
+
+# S3 Bucket name
+variable "bucket_name" {
+  type        = string
+  description = "S3 bucket prefix"
+  default     = "tech-challenge-auth"
 }
 
 # Database name
