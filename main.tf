@@ -8,7 +8,7 @@ locals {
 terraform {
   backend "s3" {
     bucket = "tech-challenge-61"
-    key    = "infra-db-tech-challenge/mondgodb.tfstate"
+    key    = "infra-db-tech-challenge-auth/mondgodb.tfstate"
     region = "us-east-1"
   }
 }
