@@ -4,10 +4,7 @@ env:
     MONGODB_ATLAS_PUBLIC_KEY: ${{ secrets.MONGODB_ATLAS_PUBLIC_KEY }}
     MONGODB_ATLAS_PRIVATE_KEY: ${{ secrets.MONGODB_ATLAS_PRIVATE_KEY }}
     TF_VAR_atlas_org_id: ${{ vars.ATLAS_ORG_ID }}
-    TF_VAR_atlas_project_name: ${{ vars.ATLAS_PROJECT_NAME}}
-    TF_VAR_application_tag_name: ${{ vars.APPLICATION_TAG_NAME }}
-    TF_VAR_bucket_name: ${{ vars.BUCKET_NAME }}
-  
+    
 on:
   push:
     branches:
@@ -27,11 +24,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
 
-    # Download TF state file from S3 if it exists
-    #  - name: Download TF state file from S3 if it exists
-    #    run: aws s3 cp s3://${{ vars.BUCKET_NAME }}/terraform.tfstate terraform.tfstate || true
-        
-
 
       - name: set up terraform
         uses: hashicorp/setup-terraform@v2
@@ -41,8 +33,6 @@ jobs:
       - name: init
         run: terraform init
         working-directory: './'
-
-    
 
       - name: validate
         run: terraform validate
@@ -59,8 +49,4 @@ jobs:
       - run: echo ${{ steps.plan.outputs.stdout }}
       - run: echo ${{ steps.plan.outputs.stderr }}
       - run: echo ${{ steps.plan.outputs.exitcode }}
-
-
-    #  - name: Upload TF state file to S3
-    #    run: aws s3 cp terraform.tfstate s3://${{ vars.BUCKET_NAME }}/terraform.tfstate
         

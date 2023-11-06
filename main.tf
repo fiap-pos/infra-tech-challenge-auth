@@ -4,6 +4,14 @@ locals {
   ip_address = "0.0.0.0/0"
 }
 
+terraform {
+  backend "s3" {
+    bucket = "tech-challenge-61"
+    key    = "infra-db-tech-challenge/mondgodb.tfstate"
+    region = var.aws_region
+  }
+}
+
 # Create a Project
 resource "mongodbatlas_project" "atlas-project" {
   org_id = var.atlas_org_id
@@ -104,8 +112,6 @@ resource "aws_s3_bucket_acl" "auth_infra_bucket_acl" {
   bucket = aws_s3_bucket.auth_infra_bucket.id
   acl    = "private"
 }
-
-
 
 
 # Outputs to Display
