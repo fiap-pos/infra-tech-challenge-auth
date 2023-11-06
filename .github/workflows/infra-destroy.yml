@@ -29,6 +29,10 @@ jobs:
         with:
           terraform_version: 1.6.1
 
+      - name: init
+        run: terraform init
+        working-directory: './'
+
       - name: destroy
         run: terraform destroy -auto-approve
         working-directory: "./"
