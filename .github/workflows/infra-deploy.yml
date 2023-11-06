@@ -4,6 +4,7 @@ env:
     MONGODB_ATLAS_PUBLIC_KEY: ${{ secrets.MONGODB_ATLAS_PUBLIC_KEY }}
     MONGODB_ATLAS_PRIVATE_KEY: ${{ secrets.MONGODB_ATLAS_PRIVATE_KEY }}
     TF_VAR_atlas_org_id: ${{ vars.ATLAS_ORG_ID }}
+    TF_VAR_aws_region: ${{ vars.AWS_REGION }}
     
 on:
   push:

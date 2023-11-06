@@ -17,13 +17,6 @@ variable "application_tag_name" {
   default     = "tech-challenge-auth"
 }
 
-# S3 Bucket name
-variable "bucket_name" {
-  type        = string
-  description = "S3 bucket prefix"
-  default     = "tech-challenge-auth"
-}
-
 # Database name
 variable "database_name" {
   type        = string
