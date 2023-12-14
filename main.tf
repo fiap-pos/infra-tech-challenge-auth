@@ -7,8 +7,8 @@ locals {
 #Configure backend
 terraform {
   backend "s3" {
-    bucket = "tech-challenge-61"
-    key    = "infra-db-tech-challenge-auth/mondgodb.tfstate"
+    bucket = "vwnunes-tech-challenge-61"
+    key    = "infra-challenge-auth/infra-auth.tfstate"
     region = "us-east-1"
   }
 }
