@@ -94,6 +94,13 @@ resource "aws_ssm_parameter" "mongodb_username" {
   depends_on = [ random_password.db-user-password ]
 }
 
+# Store new AUTH Secret into AWS ssm
+resource "aws_ssm_parameter" "auth_secret" {
+  name        = "/${var.application_tag_name}/${var.environment}/AUTH_SECRET"
+  description = "Auth secret"
+  type        = "SecureString"
+  value       = uuid()
+}
 
 # Outputs to Display
 output "atlas_cluster_connection_string" { value = mongodbatlas_advanced_cluster.atlas-cluster.connection_strings.0.standard_srv }
